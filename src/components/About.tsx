@@ -9,7 +9,7 @@ const About = () => {
     <section
       id="about"
       ref={ref}
-      className="bg-[#0A0A0A] relative flex items-center justify-center min-h-screen overflow-hidden px-2 pb-12 md:pb-0"
+      className="bg-[#0A0A0A] relative flex items-center justify-center min-h-screen overflow-hidden px-2 pt-20 md:pt-0 pb-12 md:pb-0"
     >
       <div className="absolute top-40 left-20 w-72 h-72 circle-decoration rounded-full"></div>
       <div className="absolute bottom-40 right-20 w-96 h-96 circle-decoration rounded-full"></div>

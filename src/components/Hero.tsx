@@ -1,16 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Github, Linkedin, Mail } from 'lucide-react';
+import { Github, Linkedin, Mail, Download, ChevronDown } from 'lucide-react';
 
 const Hero = () => {
   const [text, setText] = useState('');
   const fullText = "Hi, I'm Piramma Sakthi";
+
+  // Role rotating text
+  const roles = ["Full Stack Developer", "Creative Thinker", "Problem Solver"];
+  const [roleIndex, setRoleIndex] = useState(0);
+
   const typingSpeed = 100;
   const pauseDuration = 3000;
 
+  // Name typing animation
   useEffect(() => {
     let i = 0;
     let interval: ReturnType<typeof setInterval>;
+
     const typeText = () => {
       interval = setInterval(() => {
         setText(fullText.slice(0, i));
@@ -24,75 +31,131 @@ const Hero = () => {
         }
       }, typingSpeed);
     };
+
     typeText();
     return () => clearInterval(interval);
   }, []);
 
+  // Role rotation
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setRoleIndex((prev) => (prev + 1) % roles.length);
+    }, 2500);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <section id="home" className="relative h-auto bg-[#0A0A0A] flex items-center overflow-hidden pt-32 pb-10">
+    <section
+      id="home"
+      className="relative min-h-screen bg-[#0A0A0A] flex flex-col items-center justify-center overflow-hidden pt-32 pb-16"
+    >
+      {/* Decorative Circles */}
       <div className="absolute top-40 left-20 w-72 h-72 circle-decoration rounded-full"></div>
       <div className="absolute bottom-40 right-20 w-96 h-96 circle-decoration rounded-full"></div>
-      <div className="container mx-auto px-1 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-15 items-center">
-          <div className="space-y-8 px-7 md:px-20 pt-20 md:pt-28">
-            <div className="space-y-5">
-              <h2 className="text-4xl md:text-5xl gradient-text font-semibold">
-                {text} <span className="text-purple-1000">|</span>
-              </h2>
-              <p className="text-gray-400 text-lg max-w-lg leading-[2]">
-                Creative thinker and web developer passionate about crafting innovative digital experiences. Explore my work and see creativity in action!.....
-              </p>
-            </div>
-            
-            {/* Social Icons Section */}
-            <div className="flex gap-10 pt-1">
-              {/* GitHub Icon */}
-              <motion.a
-                href="https://github.com/Sakthii005"
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.3, rotate: -10, filter: "drop-shadow(0px 0px 10px rgba(255, 255, 255, 0.5))" }}
-                transition={{ type: "spring", stiffness: 200, damping: 10 }}
-                className="transition-all duration-300 hover:text-white"
-              >
-                <Github className="w-7 h-7 text-gray-300 transition-all duration-300 hover:text-[#ffcc00]" />
-              </motion.a>
 
-              {/* LinkedIn Icon */}
-              <motion.a
-                href="https://www.linkedin.com/in/piramma-sakthi-s-766836265/"
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.3, rotate: 10, filter: "drop-shadow(0px 0px 10px rgba(10, 102, 194, 0.8))" }}
-                transition={{ type: "spring", stiffness: 200, damping: 10 }}
-                className="transition-all duration-300 hover:text-white"
-              >
-                <Linkedin className="w-7 h-7 text-gray-300 transition-all duration-300 hover:text-[#0077B5]" />
-              </motion.a>
+      <div className="relative z-10 flex flex-col items-center text-center px-6">
 
-              {/* Email Icon */}
-              <motion.a
-                href="mailto:pirammasakthi42@gmail.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.3, y: -5, filter: "drop-shadow(0px 0px 10px rgba(255, 50, 50, 0.8))" }}
-                transition={{ type: "spring", stiffness: 200, damping: 10 }}
-                className="transition-all duration-300 hover:text-white"
-              >
-                <Mail className="w-7 h-7 text-gray-300 transition-all duration-300 hover:text-[#ff3333]" />
-              </motion.a>
+        {/* Availability Badge */}
+        <div className="mb-6 px-4 py-1 rounded-full border border-green-400 text-green-400 text-sm">
+          🟢 Available for Opportunities
+        </div>
+
+        {/* Profile Image */}
+        <motion.div
+          whileHover={{ scale: 1.08 }}
+          className="relative mb-8"
+        >
+          <div className="w-32 h-32 md:w-40 md:h-40 rounded-full p-[3px] 
+            bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 animate-spin-slow">
+
+            <div className="bg-black rounded-full p-2 w-full h-full">
+              <motion.img
+                src="Hero.jpeg"
+                alt="Piramma Sakthi"
+                loading="lazy"
+                className="w-full h-full object-cover rounded-full"
+              />
             </div>
           </div>
+        </motion.div>
 
-          <div className="flex justify-center md:justify-end px-6 md:px-20 py-10">
-            <motion.div className="relative rounded-3xl overflow-hidden max-w-xs sm:max-w-md md:max-w-lg bg-white/10 backdrop-blur-lg shadow-lg p-2 mb-8 md:mb-0" whileHover={{ scale: 1.1 }}>
-              <motion.div className="relative rounded-3xl" whileHover={{ filter: "drop-shadow(0px 0px 20px rgba(142, 85, 241, 0.8))" }} transition={{ duration: 0.3 }}>
-                <motion.img src="Hero.png" alt="Creative Developer" className="w-full h-auto object-cover rounded-3xl" whileTap={{ boxShadow: "0 0 30px rgba(255, 255, 255, 0.9)" }} transition={{ duration: 0.3 }} />
-              </motion.div>
-            </motion.div>
+        {/* Text Content */}
+        <div className="space-y-6 max-w-xl">
+          <h2 className="text-4xl md:text-5xl gradient-text font-semibold">
+            {text} <span className="text-purple-1000">|</span>
+          </h2>
+
+          {/* Rotating Role */}
+          <motion.h3
+            key={roleIndex}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-xl text-purple-400 font-medium"
+          >
+            {roles[roleIndex]}
+          </motion.h3>
+
+          <p className="text-gray-400 text-lg leading-[2]">
+            Creative thinker and web developer passionate about crafting innovative
+            digital experiences. Explore my work and see creativity in action!
+          </p>
+
+          {/* CTA Buttons */}
+          <div className="flex justify-center gap-6 pt-2">
+            <motion.a
+              href="PIRAMMA SAKTHI.pdf"
+              download
+              whileHover={{ scale: 1.05 }}
+              className="flex items-center gap-2 px-6 py-2 bg-purple-600 rounded-full text-white font-medium shadow-md hover:bg-purple-700 transition"
+            >
+              <Download size={18} /> Resume
+            </motion.a>
+
+            <motion.a
+              href="#contact"
+              whileHover={{ scale: 1.05 }}
+              className="px-6 py-2 border border-purple-500 rounded-full text-purple-400 font-medium hover:bg-purple-500/10 transition"
+            >
+              Contact Me
+            </motion.a>
+          </div>
+
+          {/* Social Icons */}
+          <div className="flex justify-center gap-10 pt-6">
+            <motion.a
+              href="https://github.com/Sakthii005"
+              target="_blank"
+              whileHover={{ scale: 1.3, rotate: -10 }}
+            >
+              <Github className="w-7 h-7 text-gray-300 hover:text-[#ffcc00]" />
+            </motion.a>
+
+            <motion.a
+              href="https://www.linkedin.com/in/piramma-sakthi-s-766836265/"
+              target="_blank"
+              whileHover={{ scale: 1.3, rotate: 10 }}
+            >
+              <Linkedin className="w-7 h-7 text-gray-300 hover:text-[#0077B5]" />
+            </motion.a>
+
+            <motion.a
+              href="mailto:pirammasakthi42@gmail.com"
+              whileHover={{ scale: 1.3, y: -5 }}
+            >
+              <Mail className="w-7 h-7 text-gray-300 hover:text-[#ff3333]" />
+            </motion.a>
           </div>
         </div>
       </div>
+
+      {/* Scroll Down Indicator */}
+      <motion.div
+        animate={{ y: [0, 10, 0] }}
+        transition={{ repeat: Infinity, duration: 1.5 }}
+        className="absolute bottom-6"
+      >
+        <ChevronDown className="text-gray-400" />
+      </motion.div>
     </section>
   );
 };

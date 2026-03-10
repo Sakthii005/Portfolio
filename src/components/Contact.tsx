@@ -17,40 +17,59 @@ const Contact: React.FC = () => {
   const isInView = useInView(sectionRef, { once: false, amount: 0.3 });
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    const name = (document.getElementById("name") as HTMLInputElement).value;
-    const email = (document.getElementById("email") as HTMLInputElement).value;
-    const message = (document.getElementById("message") as HTMLTextAreaElement)
-      .value;
+  const nameInput = document.getElementById("name") as HTMLInputElement;
+  const emailInput = document.getElementById("email") as HTMLInputElement;
+  const messageInput = document.getElementById("message") as HTMLTextAreaElement;
 
-    const templateParams = {
-      from_name: name,
-      from_email: email,
-      message: message,
-      to_email: "pirammasakthi42@gmail.com",
-    };
+  const name = nameInput.value;
+  const email = emailInput.value;
+  const message = messageInput.value;
 
-    setLoading(true);
-
-    emailjs
-      .send(
-        "service_9mn7yee",
-        "template_w2pz3wh",
-        templateParams,
-        "5wkccc0qNuO9EC3JP"
-      )
-      .then(
-        () => {
-          setAlertMessage("Message sent successfully!");
-          setLoading(false);
-        },
-        (error) => {
-          setAlertMessage("Error sending message: " + error.text);
-          setLoading(false);
-        }
-      );
+  const templateParams = {
+    from_name: name,
+    from_email: email,
+    message: message,
+    to_email: "pirammasakthi42@gmail.com",
   };
+
+  setLoading(true);
+
+  emailjs
+    .send(
+      "service_9mn7yee",
+      "template_w2pz3wh",
+      templateParams,
+      "5wkccc0qNuO9EC3JP"
+    )
+    .then(
+      () => {
+        setAlertMessage("Message sent successfully!");
+        setLoading(false);
+
+        // Clear form fields
+        nameInput.value = "";
+        emailInput.value = "";
+        messageInput.value = "";
+
+        // Hide alert after 3 seconds
+        setTimeout(() => {
+          setAlertMessage(null);
+        }, 3000);
+      },
+      (error) => {
+        setAlertMessage("Error sending message: " + error.text);
+        setLoading(false);
+
+        // Hide alert after 3 seconds
+        setTimeout(() => {
+          setAlertMessage(null);
+        }, 3000);
+      }
+    );
+};
+
 
   return (
     <section
@@ -144,6 +163,8 @@ const Contact: React.FC = () => {
               </div>
             </div>
           </motion.div>
+       
+           
 
           {/* Right: Form */}
           <motion.form

@@ -2,6 +2,14 @@ import React, { useState } from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 
 const certificates = [
+
+  {
+    title: 'Internship',
+    issuer: 'Eagle-HiTech Softclou Pvt Ltd',
+    date: 'June 2025',
+    description: 'A Full Stack internship at Eagle-HiTech Softclou Pvt Ltd, gaining hands-on experience in web development and modern programming technologies!',
+    image: 'Intern.jpg', // Local path
+  },
   {
     title: 'Gold Contest with iAspire',
     issuer: 'Accenture',
@@ -16,13 +24,7 @@ const certificates = [
     description: 'The SAWIT.AI Learnathon Program on Generative AI Fundamentals, gaining valuable skills for future projects!',
     image: 'GenAI.jpg', // Local path
   },
-  {
-    title: 'Internship',
-    issuer: 'Codsoft',
-    date: 'August 2024',
-    description: 'A virtual internship in Java Programming with CodSoft, enhancing my skills through challenging projects!',
-    image: 'Codsoft.jpg', // Local path
-  },
+  
   {
     title: 'Sixth Sense Robotics',
     issuer: 'Genesis EduTech',
