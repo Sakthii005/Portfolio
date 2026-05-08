@@ -1,2 +1,4 @@
-For Push in GitHub - npm run build
-                     npm run deploy
+For Push in GitHub :
+   git add .
+   git commit -m "Updated portfolio"
+   git push
