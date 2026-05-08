@@ -47,6 +47,21 @@ const projects = [
       "Improved Efficiency & Transparency",
     ],
   },
+  {
+  title: "SIPTRACK: SIPCOT Industrial Performance Tracking System",
+  description:
+    "Developed a full-stack web application for managing and monitoring industrial data within SIPCOT industrial parks. The system enables industries to update investment, employment, water usage, power consumption, turnover, and CSR activities through a centralized platform with role-based access control.",
+  image: "SIPTRACK.png",
+  tags: ["React.js", "Node.js", "MySQL", "AI & ML"],
+  features: [
+    "Role-Based Access Control",
+    "Industry Data Management",
+    "Deadline & Submission Tracking",
+    "Performance Classification",
+    "ROI Calculation & Analytics",
+    "Admin Dashboard & Reports",
+  ],
+},
 ];
 
 interface Project {
