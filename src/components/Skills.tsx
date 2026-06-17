@@ -140,7 +140,7 @@ const Skills = () => {
     <section
       id="skills"
       ref={ref}
-      className="relative min-h-[100vh] bg-[#0A0A0A] flex flex-col items-center justify-center overflow-hidden pt-32 pb-32"
+      className="relative min-h-[100vh] bg-transparent flex flex-col items-center justify-center overflow-hidden pt-32 pb-32"
     >
       {/* Background Circles */}
       <div className="absolute top-40 left-20 w-60 h-60 sm:w-72 sm:h-72 circle-decoration rounded-full"></div>

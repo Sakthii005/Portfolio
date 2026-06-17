@@ -1,8 +1,10 @@
 import React from "react";
 import { Menu, X } from "lucide-react";
+import { motion, useScroll } from "framer-motion";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const { scrollYProgress } = useScroll();
 
   const scrollToSection = (id: string) => {
     const section = document.getElementById(id);
@@ -14,6 +16,11 @@ const Header = () => {
 
   return (
     <header className="fixed w-full bg-[#0A0A0A]/80 backdrop-blur-sm z-50">
+      {/* Scroll Progress Indicator Bar */}
+      <motion.div
+        className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 origin-left z-50"
+        style={{ scaleX: scrollYProgress }}
+      />
       <div className="container mx-auto px-4 py-4">
         <div className="flex justify-between items-center">
           <button

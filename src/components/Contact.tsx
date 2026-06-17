@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import { Mail, Phone, MapPin } from "lucide-react";
 import emailjs from "emailjs-com";
 import { motion, useInView } from "framer-motion";
+import { SiFiverr } from "react-icons/si";
 
 declare global {
   interface Window {
@@ -75,7 +76,7 @@ const Contact: React.FC = () => {
     <section
       id="contact"
       ref={sectionRef}
-      className="py-16 bg-[#0A0A0A] relative overflow-hidden"
+      className="py-16 bg-transparent relative overflow-hidden"
     >
       {/* Decorative background */}
       <div className="absolute top-40 left-20 w-72 h-72 circle-decoration rounded-full"></div>
@@ -160,6 +161,28 @@ const Contact: React.FC = () => {
                   <MapPin className="w-5 h-5 text-purple-300" />
                 </motion.div>
                 <span className="text-gray-300">Dindigul, India</span>
+              </div>
+
+              {/* Fiverr */}
+              <div className="flex items-center gap-4">
+                <motion.div
+                  animate={{ scale: [1, 1.3, 1], rotate: [0, 10, 0] }}
+                  transition={{
+                    duration: 2,
+                    ease: "easeInOut",
+                    repeat: Infinity,
+                  }}
+                >
+                  <SiFiverr className="w-5 h-5 text-purple-300" />
+                </motion.div>
+                <a
+                  href="https://www.fiverr.com/s/2K35eRL"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-300 hover:text-[#1dbf73] transition-colors"
+                >
+                  Fiverr Freelance Profile
+                </a>
               </div>
             </div>
           </motion.div>

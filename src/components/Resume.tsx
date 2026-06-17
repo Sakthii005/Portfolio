@@ -27,7 +27,7 @@ const Resume = () => {
     <section
       id="resume"
       ref={sectionRef}
-      className="py-20 bg-[#0A0A0A] relative flex items-center justify-center overflow-hidden"
+      className="py-20 bg-transparent relative flex items-center justify-center overflow-hidden"
     >
       {/* Background circles */}
       <div className="absolute top-40 left-20 w-72 h-72 circle-decoration rounded-full"></div>

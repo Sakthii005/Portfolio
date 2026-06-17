@@ -72,7 +72,7 @@ const CertificateItem = ({ certificate }: { certificate: typeof certificates[0] 
 
 const Certificates = () => {
   return (
-    <section id="certificates" className="py-1 bg-[#0A0A0A] relative overflow-hidden">
+    <section id="certificates" className="py-1 bg-transparent relative overflow-hidden">
       <div className="absolute top-40 left-20 w-72 h-72 circle-decoration rounded-full"></div>
       <div className="absolute bottom-800 right-20 w-96 h-96 circle-decoration rounded-full"></div>
       <div className="container mx-auto px-4 relative z-10">
