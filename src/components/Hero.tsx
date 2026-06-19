@@ -1,41 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Github, Linkedin, Mail, Download, ChevronDown } from 'lucide-react';
 import { SiFiverr } from 'react-icons/si';
 
 const Hero = () => {
-  const [text, setText] = useState('');
-  const fullText = "Hi, I'm Piramma Sakthi";
-
   // Role rotating text
-  const roles = ["Full Stack Web Developer", "Building Scalable Web Applications 🚀"];
+  const roles = ["Full Stack Web Developer", "Building Scalable Web Applications"];
   const [roleIndex, setRoleIndex] = useState(0);
 
-  const typingSpeed = 100;
-  const pauseDuration = 3000;
-
-  // Name typing animation
-  useEffect(() => {
-    let i = 0;
-    let interval: ReturnType<typeof setInterval>;
-
-    const typeText = () => {
-      interval = setInterval(() => {
-        setText(fullText.slice(0, i));
-        i++;
-        if (i > fullText.length) {
-          clearInterval(interval);
-          setTimeout(() => {
-            i = 0;
-            typeText();
-          }, pauseDuration);
-        }
-      }, typingSpeed);
-    };
-
-    typeText();
-    return () => clearInterval(interval);
-  }, []);
 
   // Role rotation
   useEffect(() => {
@@ -82,9 +54,36 @@ const Hero = () => {
 
         {/* Text Content */}
         <div className="space-y-6 max-w-xl">
-          <h2 className="text-4xl md:text-5xl gradient-text font-semibold">
-            {text} <span className="text-purple-1000">|</span>
-          </h2>
+          {/* Greeting */}
+          <p
+            style={{
+              fontFamily: "'Playfair Display', serif",
+              fontStyle: 'italic',
+              fontSize: '1.15rem',
+              letterSpacing: '0.15em',
+              color: '#a78bfa',
+            }}
+          >
+            Hi, I&apos;m
+          </p>
+
+          {/* Name with unique font & gradient */}
+          <h1
+            style={{
+              fontFamily: "'Cinzel Decorative', cursive",
+              fontSize: 'clamp(1.6rem, 5vw, 3rem)',
+              fontWeight: 700,
+              lineHeight: 1.2,
+              letterSpacing: '0.04em',
+              background: 'linear-gradient(135deg, #e879f9 0%, #a78bfa 35%, #60a5fa 65%, #34d399 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+              filter: 'drop-shadow(0 0 18px rgba(167,139,250,0.45))',
+            }}
+          >
+            Piramma Sakthi
+          </h1>
 
           {/* Rotating Role */}
           <motion.h3
