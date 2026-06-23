@@ -6,6 +6,7 @@ import { SiFiverr } from "react-icons/si";
 
 declare global {
   interface Window {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     Email: any;
   }
 }
@@ -71,190 +72,167 @@ const Contact: React.FC = () => {
       );
   };
 
-
   return (
     <section
       id="contact"
       ref={sectionRef}
-      className="py-16 bg-transparent relative overflow-hidden"
+      className="py-20 bg-transparent relative overflow-hidden flex flex-col items-center justify-center"
     >
-      {/* Decorative background */}
-      <div className="absolute top-40 left-20 w-72 h-72 circle-decoration rounded-full"></div>
-      <div className="absolute bottom-40 right-20 w-96 h-96 circle-decoration rounded-full"></div>
+      {/* Decorative background blobs */}
+      <div className="absolute top-40 left-20 w-72 h-72 circle-decoration rounded-full opacity-20" />
+      <div className="absolute bottom-40 right-20 w-96 h-96 circle-decoration rounded-full opacity-20" />
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="relative z-10 w-full max-w-5xl px-4 sm:px-6">
         {/* Section title */}
-        <motion.h2
-          className="text-4xl font-bold text-center mb-5 gradient-text"
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-        >
+        <h2 className="text-3xl sm:text-4xl font-bold text-center mb-5 gradient-text">
           Get In Touch
-        </motion.h2>
+        </h2>
 
-        <motion.h3
-          className="text-1xl font-semibold mb-10 text-purple-300 flex items-center justify-center"
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-        >
-          <span className="w-16 h-[1px] bg-gradient-to-r from-purple-500 to-transparent" />
-          <p className="text-purple-300 font-medium">Contact Me</p>
-          <span className="w-16 h-[1px] bg-gradient-to-l from-purple-500 to-transparent" />
-        </motion.h3>
+        <div className="flex items-center justify-center mb-16 gap-3">
+          <span className="w-12 sm:w-16 h-[1px] bg-gradient-to-r from-purple-500 to-transparent" />
+          <p className="text-purple-300 font-medium text-sm sm:text-base">Contact Me</p>
+          <span className="w-12 sm:w-16 h-[1px] bg-gradient-to-l from-purple-500 to-transparent" />
+        </div>
 
-        {/* Contact grid */}
-        <div className="grid md:grid-cols-2 gap-12">
-          {/* Left: Info */}
-          <motion.div
-            className="pl-10 sm:pl-20 mt-12 mb-12 sm:mb-0"
-            initial={{ opacity: 0, x: -50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-          >
-            <h3 className="text-xl font-semibold mb-6 text-purple-300">
-              Contact Information
-            </h3>
+        {/* Contact Container Box - Glassmorphism Card */}
+        <div className="bg-[#121212]/75 border border-white/5 backdrop-blur-md rounded-3xl overflow-hidden shadow-2xl hover:border-purple-500/20 transition-all duration-300 max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-0">
+            
+            {/* LEFT COLUMN: Contact Information */}
+            <div className="md:col-span-5 p-6 sm:p-8 bg-black/40 border-b md:border-b-0 md:border-r border-white/5 flex flex-col justify-between space-y-8">
+              <div>
+                <h3 className="text-lg font-bold tracking-wider text-purple-400 uppercase mb-6">
+                  Contact Information
+                </h3>
+                
+                <p className="text-gray-400 text-sm leading-relaxed mb-8">
+                  Have an exciting project or just want to say hello? Drop me a message and I'll get back to you as soon as possible.
+                </p>
 
-            <div className="space-y-6">
-              {/* Email */}
-              <div className="flex items-center gap-4">
-                <motion.div
-                  animate={{ scale: [1, 1.3, 1], rotate: [0, 10, 0] }}
-                  transition={{
-                    duration: 2,
-                    ease: "easeInOut",
-                    repeat: Infinity,
-                  }}
-                >
-                  <Mail className="w-5 h-5 text-purple-300" />
-                </motion.div>
-                <span className="text-gray-300">pirammasakthi42@gmail.com</span>
-              </div>
+                <div className="space-y-6">
+                  {/* Email */}
+                  <div className="flex items-center gap-4 group">
+                    <div className="p-2.5 bg-purple-500/10 border border-purple-500/20 rounded-xl text-purple-400 group-hover:scale-110 transition-transform duration-300">
+                      <Mail className="w-4 h-4" />
+                    </div>
+                    <div className="flex flex-col">
+                      <span className="text-[10px] text-gray-500 font-bold uppercase tracking-wider">Email Me</span>
+                      <span className="text-gray-300 text-sm font-medium">pirammasakthi42@gmail.com</span>
+                    </div>
+                  </div>
 
-              {/* Phone */}
-              <div className="flex items-center gap-4">
-                <motion.div
-                  animate={{ scale: [1, 1.3, 1], rotate: [0, 10, 0] }}
-                  transition={{
-                    duration: 2,
-                    ease: "easeInOut",
-                    repeat: Infinity,
-                  }}
-                >
-                  <Phone className="w-5 h-5 text-purple-300" />
-                </motion.div>
-                <span className="text-gray-300">+91 9566442144</span>
-              </div>
+                  {/* Phone */}
+                  <div className="flex items-center gap-4 group">
+                    <div className="p-2.5 bg-purple-500/10 border border-purple-500/20 rounded-xl text-purple-400 group-hover:scale-110 transition-transform duration-300">
+                      <Phone className="w-4 h-4" />
+                    </div>
+                    <div className="flex flex-col">
+                      <span className="text-[10px] text-gray-500 font-bold uppercase tracking-wider">Call Me</span>
+                      <span className="text-gray-300 text-sm font-medium">+91 9566442144</span>
+                    </div>
+                  </div>
 
-              {/* Location */}
-              <div className="flex items-center gap-4">
-                <motion.div
-                  animate={{ scale: [1, 1.3, 1], rotate: [0, 10, 0] }}
-                  transition={{
-                    duration: 2,
-                    ease: "easeInOut",
-                    repeat: Infinity,
-                  }}
-                >
-                  <MapPin className="w-5 h-5 text-purple-300" />
-                </motion.div>
-                <span className="text-gray-300">Dindigul, India</span>
-              </div>
+                  {/* Location */}
+                  <div className="flex items-center gap-4 group">
+                    <div className="p-2.5 bg-purple-500/10 border border-purple-500/20 rounded-xl text-purple-400 group-hover:scale-110 transition-transform duration-300">
+                      <MapPin className="w-4 h-4" />
+                    </div>
+                    <div className="flex flex-col">
+                      <span className="text-[10px] text-gray-500 font-bold uppercase tracking-wider">Location</span>
+                      <span className="text-gray-300 text-sm font-medium">Dindigul, India</span>
+                    </div>
+                  </div>
 
-              {/* Fiverr */}
-              <div className="flex items-center gap-4">
-                <motion.div
-                  animate={{ scale: [1, 1.3, 1], rotate: [0, 10, 0] }}
-                  transition={{
-                    duration: 2,
-                    ease: "easeInOut",
-                    repeat: Infinity,
-                  }}
-                >
-                  <SiFiverr className="w-5 h-5 text-purple-300" />
-                </motion.div>
-                <a
-                  href="https://www.fiverr.com/s/2K35eRL"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-300 hover:text-[#1dbf73] transition-colors"
-                >
-                  Fiverr Freelance Profile
-                </a>
+                  {/* Fiverr */}
+                  <div className="flex items-center gap-4 group">
+                    <div className="p-2.5 bg-purple-500/10 border border-purple-500/20 rounded-xl text-purple-400 group-hover:scale-110 transition-transform duration-300">
+                      <SiFiverr className="w-4 h-4" />
+                    </div>
+                    <div className="flex flex-col">
+                      <span className="text-[10px] text-gray-500 font-bold uppercase tracking-wider">Freelance</span>
+                      <a
+                        href="https://www.fiverr.com/s/2K35eRL"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-gray-300 hover:text-[#1dbf73] text-sm font-medium transition-colors"
+                      >
+                        Fiverr Profile
+                      </a>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-          </motion.div>
 
-
-
-          {/* Right: Form */}
-          <motion.form
-            onSubmit={handleSubmit}
-            className="pr-0 sm:px-12 md:px-20 space-y-7"
-            initial={{ opacity: 0, x: 50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
-            transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-          >
-            <div>
-              <label
-                htmlFor="name"
-                className="block text-sm font-medium text-purple-300 mb-1"
-              >
-                Name
-              </label>
-              <input
-                type="text"
-                id="name"
-                className="w-full px-4 py-3 bg-[#151515] border border-purple-600/20 rounded-lg text-white focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-                required
-              />
-            </div>
-
-            <div>
-              <label
-                htmlFor="email"
-                className="block text-sm font-medium text-purple-300 mb-1"
-              >
-                Email
-              </label>
-              <input
-                type="email"
-                id="email"
-                className="w-full px-4 py-3 bg-[#151515] border border-purple-600/20 rounded-lg text-white focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-                required
-              />
-            </div>
-
-            <div>
-              <label
-                htmlFor="message"
-                className="block text-sm font-medium text-purple-300 mb-1"
-              >
-                Message
-              </label>
-              <textarea
-                id="message"
-                rows={4}
-                className="w-full px-4 py-3 bg-[#151515] border border-purple-600/20 rounded-lg text-white focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-                required
-              ></textarea>
-            </div>
-
-            <button
-              type="submit"
-              className="w-full bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 transition-colors mb-6"
+            {/* RIGHT COLUMN: Send Message Form */}
+            <form
+              onSubmit={handleSubmit}
+              className="md:col-span-7 p-6 sm:p-8 space-y-5"
             >
-              {loading ? "Sending..." : "Send Message"}
-            </button>
-
-            {alertMessage && (
-              <div className="text-center text-green-500 p-3">
-                {alertMessage}
+              <h3 className="text-lg font-bold tracking-wider text-purple-400 uppercase mb-2">
+                Send a Message
+              </h3>
+              
+              <div>
+                <label
+                  htmlFor="name"
+                  className="block text-xs font-semibold text-gray-400 mb-1.5 uppercase tracking-wider"
+                >
+                  Name
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  className="w-full px-4 py-2.5 bg-white/[0.02] border border-white/10 rounded-lg text-white focus:ring-1 focus:ring-purple-500 focus:border-transparent transition-all outline-none text-sm"
+                  required
+                />
               </div>
-            )}
-          </motion.form>
+
+              <div>
+                <label
+                  htmlFor="email"
+                  className="block text-xs font-semibold text-gray-400 mb-1.5 uppercase tracking-wider"
+                >
+                  Email Address
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  className="w-full px-4 py-2.5 bg-white/[0.02] border border-white/10 rounded-lg text-white focus:ring-1 focus:ring-purple-500 focus:border-transparent transition-all outline-none text-sm"
+                  required
+                />
+              </div>
+
+              <div>
+                <label
+                  htmlFor="message"
+                  className="block text-xs font-semibold text-gray-400 mb-1.5 uppercase tracking-wider"
+                >
+                  Message
+                </label>
+                <textarea
+                  id="message"
+                  rows={4}
+                  className="w-full px-4 py-2.5 bg-white/[0.02] border border-white/10 rounded-lg text-white focus:ring-1 focus:ring-purple-500 focus:border-transparent transition-all outline-none text-sm resize-none"
+                  required
+                ></textarea>
+              </div>
+
+              <button
+                type="submit"
+                className="w-full bg-purple-600 hover:bg-purple-700 text-white font-medium text-sm px-6 py-2.5 rounded-lg transition-colors shadow-lg shadow-purple-500/10 cursor-pointer"
+              >
+                {loading ? "Sending..." : "Send Message"}
+              </button>
+
+              {alertMessage && (
+                <div className="text-center text-xs font-semibold text-green-400 pt-2 animate-pulse">
+                  {alertMessage}
+                </div>
+              )}
+            </form>
+
+          </div>
         </div>
       </div>
     </section>

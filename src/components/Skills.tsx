@@ -15,228 +15,305 @@ import {
   FaRobot,
   FaNodeJs,
   FaJs,
-  FaProjectDiagram,
+  FaGitAlt,
+  FaGithub,
+  FaChartBar,
+  FaPlug,
 } from "react-icons/fa";
-
-import { SiExpress, SiMongodb } from "react-icons/si";
+import {
+  SiExpress,
+  SiMongodb,
+  SiMysql,
+  SiPostman,
+  SiVscodium,
+  SiJsonwebtokens,
+  SiNpm,
+  SiScikitlearn,
+  SiTailwindcss,
+} from "react-icons/si";
 import { motion, useInView } from "framer-motion";
 
-/* ================= DATA ================= */
-const skills = [
+/* ===================== DATA ===================== */
+interface SkillItem {
+  name: string;
+  icon: React.ReactNode;
+}
+
+interface TechCategory {
+  label: string;
+  color: string;      // Primary color for icons and accents
+  bgColor: string;    // Light tint for hover backgrounds
+  borderColor: string; // Vibrant border color on hover
+  items: SkillItem[];
+}
+
+const techCategories: TechCategory[] = [
   {
-    category: "Technical Skills",
+    label: "Frontend Technologies",
+    color: "#22d3ee",       // Cyan
+    bgColor: "rgba(34,211,238,0.06)",
+    borderColor: "rgba(34,211,238,0.3)",
     items: [
-      { name: "HTML", proficiency: 90, icon: <FaHtml5 /> },
-      { name: "CSS", proficiency: 62, icon: <FaCss3Alt /> },
-      { name: "JavaScript", proficiency: 75, icon: <FaJs /> },
-      { name: "React.js", proficiency: 60, icon: <FaReact /> },
-      { name: "Node.js", proficiency: 50, icon: <FaNodeJs /> },
-      { name: "Express.js", proficiency: 55, icon: <SiExpress /> },
-      { name: "MongoDB", proficiency: 60, icon: <SiMongodb /> },
-      { name: "Java", proficiency: 67, icon: <FaJava /> },
-      { name: "Python", proficiency: 70, icon: <FaPython /> },
-      { name: "SQL", proficiency: 60, icon: <FaDatabase /> },
-      { name: "Machine Learning", proficiency: 65, icon: <FaRobot /> },
-      { name: "DSA", proficiency: 65, icon: <FaProjectDiagram /> },
+      { name: "HTML5",        icon: <FaHtml5 /> },
+      { name: "CSS3",         icon: <FaCss3Alt /> },
+      { name: "Tailwind CSS", icon: <SiTailwindcss /> },
+      { name: "React.js",     icon: <FaReact /> },
     ],
   },
   {
-    category: "Soft Skills",
+    label: "Backend Technologies",
+    color: "#34d399",       // Emerald
+    bgColor: "rgba(52,211,153,0.06)",
+    borderColor: "rgba(52,211,153,0.3)",
     items: [
-      { name: "Leadership", icon: <FaUsers /> },
-      { name: "Creativity", icon: <FaLightbulb /> },
-      { name: "Problem Solving", icon: <FaCogs /> },
-      { name: "Critical Thinking", icon: <FaBrain /> },
-      { name: "Teamwork", icon: <FaHandshake /> },
-      { name: "Interaction", icon: <FaComments /> },
+      { name: "Node.js",         icon: <FaNodeJs /> },
+      { name: "Express.js",      icon: <SiExpress /> },
+      { name: "JWT Auth",        icon: <SiJsonwebtokens /> },
+      { name: "API Integration", icon: <FaPlug /> },
+    ],
+  },
+  {
+    label: "Databases",
+    color: "#fb923c",       // Orange
+    bgColor: "rgba(251,146,60,0.06)",
+    borderColor: "rgba(251,146,60,0.3)",
+    items: [
+      { name: "MySQL",   icon: <SiMysql /> },
+      { name: "MongoDB", icon: <SiMongodb /> },
+      { name: "SQL",     icon: <FaDatabase /> },
+    ],
+  },
+  {
+    label: "Programming Languages",
+    color: "#a78bfa",       // Purple
+    bgColor: "rgba(167,139,250,0.06)",
+    borderColor: "rgba(167,139,250,0.3)",
+    items: [
+      { name: "Java",       icon: <FaJava /> },
+      { name: "Python",     icon: <FaPython /> },
+      { name: "JavaScript", icon: <FaJs /> },
+    ],
+  },
+  {
+    label: "Machine Learning & AI",
+    color: "#f472b6",       // Pink
+    bgColor: "rgba(244,114,182,0.06)",
+    borderColor: "rgba(244,114,182,0.3)",
+    items: [
+      { name: "ML Algorithms",        icon: <FaRobot /> },
+      { name: "Predictive Analytics", icon: <SiScikitlearn /> },
+      { name: "Data Preprocessing",   icon: <FaBrain /> },
+      { name: "Feature Engineering",  icon: <FaLightbulb /> },
+      { name: "Model Evaluation",     icon: <FaCogs /> },
+    ],
+  },
+  {
+    label: "Tools & Platforms",
+    color: "#fbbf24",       // Amber
+    bgColor: "rgba(251,191,36,0.06)",
+    borderColor: "rgba(251,191,36,0.3)",
+    items: [
+      { name: "Git",     icon: <FaGitAlt /> },
+      { name: "GitHub",  icon: <FaGithub /> },
+      { name: "Postman", icon: <SiPostman /> },
+      { name: "VS Code", icon: <SiVscodium /> },
+      { name: "Power BI",icon: <FaChartBar /> },
+      { name: "NPM",     icon: <SiNpm /> },
     ],
   },
 ];
 
-/* ================= FLOAT ANIMATION ================= */
-const floating = {
-  animate: {
-    y: [0, -6, 0],
-    transition: {
-      duration: 3,
-      repeat: Infinity,
-      ease: "easeInOut",
-    },
-  },
-};
+const softSkills: (SkillItem & { color: string; bgColor: string; borderColor: string })[] = [
+  { name: "Leadership",        icon: <FaUsers />,     color: "#a78bfa", bgColor: "rgba(167,139,250,0.06)", borderColor: "rgba(167,139,250,0.3)" },
+  { name: "Creativity",        icon: <FaLightbulb />, color: "#f472b6", bgColor: "rgba(244,114,182,0.06)", borderColor: "rgba(244,114,182,0.3)" },
+  { name: "Problem Solving",   icon: <FaCogs />,      color: "#34d399", bgColor: "rgba(52,211,153,0.06)",  borderColor: "rgba(52,211,153,0.3)" },
+  { name: "Critical Thinking", icon: <FaBrain />,     color: "#60a5fa", bgColor: "rgba(96,165,250,0.06)",  borderColor: "rgba(96,165,250,0.3)" },
+  { name: "Teamwork",          icon: <FaHandshake />, color: "#fb923c", bgColor: "rgba(251,146,60,0.06)",  borderColor: "rgba(251,146,60,0.3)" },
+  { name: "Interaction",       icon: <FaComments />,  color: "#f9a8d4", bgColor: "rgba(249,168,212,0.06)",  borderColor: "rgba(249,168,212,0.3)" },
+];
 
-/* ================= PERFECT RESPONSIVE CIRCLE ================= */
-const CircleSkill = ({
+/* ===================== SKILL CARD ===================== */
+const SkillCard = ({
+  name,
   icon,
-  value,
-}: {
-  icon: React.ReactNode;
-  value: number;
-}) => {
-  const radius = 34;
-  const circumference = 2 * Math.PI * radius;
-  const offset = circumference - (value / 100) * circumference;
+  color,
+  bgColor,
+  borderColor,
+  delay,
+  isInView,
+}: SkillItem & { color: string; bgColor: string; borderColor: string; delay: number; isInView: boolean }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 15 }}
+    animate={isInView ? { opacity: 1, y: 0 } : {}}
+    transition={{ delay, duration: 0.4, ease: "easeOut" }}
+    whileHover={{ y: -3, scale: 1.02 }}
+    className="group relative flex items-center gap-3 px-4 py-2.5 rounded-lg
+      bg-white/[0.03] border border-white/[0.06] backdrop-blur-sm cursor-default
+      transition-all duration-300 hover:border-transparent"
+    style={{
+      boxShadow: "0 4px 20px -10px rgba(0,0,0,0.3)",
+    }}
+  >
+    {/* Clean gradient background on hover */}
+    <div
+      className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+      style={{
+        background: `linear-gradient(135deg, ${bgColor} 0%, rgba(255,255,255,0.01) 100%)`,
+        border: `1px solid ${borderColor}`,
+      }}
+    />
 
-  return (
-    <div className="relative w-16 h-16 sm:w-20 sm:h-20">
-      <svg viewBox="0 0 80 80" className="w-full h-full rotate-[-90deg]">
-        <defs>
-          <linearGradient id="circleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#9333ea" />
-            <stop offset="100%" stopColor="#f3e8ff" />
-          </linearGradient>
-        </defs>
+    {/* Subtle inner glowing point */}
+    <div
+      className="absolute top-0 left-0 w-1.5 h-1.5 rounded-full m-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+      style={{
+        background: color,
+        boxShadow: `0 0 8px ${color}`,
+      }}
+    />
 
-        {/* Background */}
-        <circle
-          cx="40"
-          cy="40"
-          r={radius}
-          stroke="#1f2937"
-          strokeWidth="6"
-          fill="transparent"
-        />
-
-        {/* Progress */}
-        <motion.circle
-          cx="40"
-          cy="40"
-          r={radius}
-          stroke="url(#circleGradient)"
-          strokeWidth="6"
-          fill="transparent"
-          strokeDasharray={circumference}
-          strokeDashoffset={circumference}
-          strokeLinecap="round"
-          animate={{ strokeDashoffset: offset }}
-          transition={{ duration: 1.4 }}
-          style={{
-            filter: "drop-shadow(0px 0px 6px rgba(147,51,234,0.5))",
-          }}
-        />
-      </svg>
-
-      {/* Icon + Percentage */}
-      <motion.div
-        variants={floating}
-        animate="animate"
-        className="absolute inset-0 flex flex-col items-center justify-center text-xs"
-      >
-        <span className="text-purple-400 text-base sm:text-lg">{icon}</span>
-        <span className="text-gray-300 text-[10px] sm:text-[11px]">
-          {value}%
-        </span>
-      </motion.div>
+    {/* Icon Container with subtle background badge */}
+    <div
+      className="flex items-center justify-center w-8 h-8 rounded-md bg-white/[0.04] 
+        group-hover:bg-white/[0.08] transition-all duration-300 text-lg z-10"
+      style={{ color: "rgba(255,255,255,0.6)" }}
+    >
+      <span className="group-hover:scale-110 transition-transform duration-300" style={{ color: color }}>
+        {icon}
+      </span>
     </div>
-  );
-};
 
-/* ================= MAIN ================= */
+    {/* Name */}
+    <span className="text-gray-300 group-hover:text-white text-xs font-medium z-10 transition-colors duration-300">
+      {name}
+    </span>
+  </motion.div>
+);
+
+/* ===================== CATEGORY BLOCK ===================== */
+const CategoryBlock = ({
+  cat,
+  isInView,
+  baseDelay,
+}: {
+  cat: TechCategory;
+  isInView: boolean;
+  baseDelay: number;
+}) => (
+  <div className="mb-8">
+    {/* Category label with sleek under-line */}
+    <div className="mb-4">
+      <h4
+        className="text-xs sm:text-sm font-semibold tracking-wider uppercase inline-block pb-1 border-b"
+        style={{
+          color: cat.color,
+          borderColor: `${cat.color}33`,
+        }}
+      >
+        {cat.label}
+      </h4>
+    </div>
+
+    {/* Cards grid — Horizontal boxes */}
+    <div className="grid grid-cols-2 gap-3">
+      {cat.items.map((skill, i) => (
+        <SkillCard
+          key={skill.name}
+          {...skill}
+          color={cat.color}
+          bgColor={cat.bgColor}
+          borderColor={cat.borderColor}
+          delay={baseDelay + i * 0.05}
+          isInView={isInView}
+        />
+      ))}
+    </div>
+  </div>
+);
+
+/* ===================== MAIN ===================== */
 const Skills = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: false, amount: 0.2 });
+  const isInView = useInView(ref, { once: false, amount: 0.1 });
+
+  // Left column: Frontend, Databases, ML & AI
+  const leftCats = [techCategories[0], techCategories[2], techCategories[4]];
+  // Right column: Backend, Programming Languages, Tools & Platforms
+  const rightCats = [techCategories[1], techCategories[3], techCategories[5]];
 
   return (
     <section
       id="skills"
       ref={ref}
-      className="relative min-h-[100vh] bg-transparent flex flex-col items-center justify-center overflow-hidden pt-32 pb-32"
+      className="relative bg-transparent flex flex-col items-center justify-center overflow-hidden pt-12 pb-20 sm:pb-24"
     >
-      {/* Background Circles */}
-      <div className="absolute top-40 left-20 w-60 h-60 sm:w-72 sm:h-72 circle-decoration rounded-full"></div>
-      <div className="absolute bottom-40 right-20 w-72 h-72 sm:w-96 sm:h-96 circle-decoration rounded-full"></div>
+      {/* Background decoration */}
+      <div className="absolute top-40 left-20 w-60 h-60 sm:w-72 sm:h-72 circle-decoration rounded-full opacity-30" />
+      <div className="absolute bottom-40 right-20 w-72 h-72 sm:w-96 sm:h-96 circle-decoration rounded-full opacity-30" />
 
       <div className="relative z-10 w-full max-w-5xl px-4 sm:px-6">
-        {/* Heading */}
+        {/* Section heading */}
         <h2 className="text-3xl sm:text-4xl font-bold text-center mb-5 gradient-text">
-          Skills & Expertise
+          Skills &amp; Expertise
         </h2>
-
-        <div className="flex items-center justify-center mb-12 gap-3">
+        <div className="flex items-center justify-center mb-16 gap-3">
           <span className="w-12 sm:w-16 h-[1px] bg-gradient-to-r from-purple-500 to-transparent" />
-          <p className="text-purple-300 font-medium text-sm sm:text-base">
-            What I Know
-          </p>
+          <p className="text-purple-300 font-medium text-sm sm:text-base">What I Know</p>
           <span className="w-12 sm:w-16 h-[1px] bg-gradient-to-l from-purple-500 to-transparent" />
         </div>
 
-        {/* ===== TECHNICAL ===== */}
-        <div className="mb-24">
+        {/* ── TECHNICAL SKILLS ── */}
+        <div className="mb-20">
           <h3 className="text-xl sm:text-2xl font-bold mb-8 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
             Technical Skills
           </h3>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 sm:gap-10">
-            {skills[0].items.map((skill, index) => {
-              const technicalSkill = skill as {
-                name: string;
-                proficiency: number;
-                icon: React.ReactNode;
-              };
+          {/* Two-column split */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-12 gap-y-2">
+            {/* LEFT COLUMN */}
+            <div className="flex flex-col gap-2">
+              {leftCats.map((cat, idx) => (
+                <CategoryBlock
+                  key={cat.label}
+                  cat={cat}
+                  isInView={isInView}
+                  baseDelay={idx * 0.05}
+                />
+              ))}
+            </div>
 
-              return (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ delay: index * 0.08 }}
-                  whileHover={{
-                    rotateX: 6,
-                    rotateY: -6,
-                    scale: 1.05,
-                  }}
-                  className="p-4 sm:p-6 rounded-xl backdrop-blur-md bg-white/5 border border-white/10 shadow-lg hover:shadow-purple-500/20 transition"
-                >
-                  <div className="flex flex-col items-center gap-3">
-                    <CircleSkill
-                      icon={technicalSkill.icon}
-                      value={technicalSkill.proficiency}
-                    />
-                    <p className="text-gray-200 text-xs sm:text-sm font-medium text-center">
-                      {technicalSkill.name}
-                    </p>
-                  </div>
-                </motion.div>
-              );
-            })}
+            {/* RIGHT COLUMN */}
+            <div className="flex flex-col gap-2">
+              {rightCats.map((cat, idx) => (
+                <CategoryBlock
+                  key={cat.label}
+                  cat={cat}
+                  isInView={isInView}
+                  baseDelay={idx * 0.05 + 0.1}
+                />
+              ))}
+            </div>
           </div>
         </div>
 
-        {/* ===== SOFT ===== */}
+        {/* ── SOFT SKILLS ── */}
         <div>
           <h3 className="text-xl sm:text-2xl font-bold mb-8 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
             Soft Skills
           </h3>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6 sm:gap-8">
-            {skills[1].items.map((skill, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                transition={{ delay: index * 0.07 }}
-                whileHover={{
-                  scale: 1.08,
-                  rotateX: 8,
-                  rotateY: -8,
-                  boxShadow: "0px 0px 25px rgba(168,85,247,0.4)",
-                }}
-                className="p-4 sm:p-5 rounded-xl backdrop-blur-md bg-white/5 border border-white/10 cursor-pointer transition"
-              >
-                <motion.div
-                  variants={floating}
-                  animate="animate"
-                  className="flex flex-col items-center gap-3"
-                >
-                  <span className="text-purple-400 text-2xl sm:text-3xl">
-                    {skill.icon}
-                  </span>
-
-                  <span className="text-gray-200 text-xs sm:text-sm text-center">
-                    {skill.name}
-                  </span>
-                </motion.div>
-              </motion.div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
+            {softSkills.map((skill, index) => (
+              <SkillCard
+                key={skill.name}
+                name={skill.name}
+                icon={skill.icon}
+                color={skill.color}
+                bgColor={skill.bgColor}
+                borderColor={skill.borderColor}
+                delay={index * 0.05}
+                isInView={isInView}
+              />
             ))}
           </div>
         </div>

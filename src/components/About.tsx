@@ -9,7 +9,7 @@ const About = () => {
     <section
       id="about"
       ref={ref}
-      className="bg-transparent relative flex items-center justify-center min-h-screen overflow-hidden px-2 pt-20 md:pt-0 pb-12 md:pb-0"
+      className="bg-transparent relative flex items-center justify-center overflow-hidden px-2 py-16 md:py-20"
     >
       <div className="absolute top-40 left-20 w-72 h-72 circle-decoration rounded-full"></div>
       <div className="absolute bottom-40 right-20 w-96 h-96 circle-decoration rounded-full"></div>
@@ -39,23 +39,25 @@ const About = () => {
             </h3>
 
             <p className="text-gray-400 mb-8 px-2">
-              I am a passionate Java Developer and Front-End Innovator, who loves AI, machine
-              learning, and web development. A natural problem solver with strong leadership skills
-              and a knack for quick learning, I thrive in collaborative environments where
-              boundaries are pushed further and further. My aim is to craft seamless, intuitive
-              applications that combine technical precision with creative solutions to make a
-              meaningful impact through every project I take on.
+              I am a passionate Full Stack Web Developer with a strong interest in web development, AI, and modern technologies. I specialize in building responsive, scalable, and user-friendly applications using frontend and backend technologies. A problem solver with strong adaptability and quick learning skills, I enjoy working in collaborative environments where I can create innovative solutions and continuously improve my technical expertise. My goal is to develop seamless applications that combine clean design, efficient backend systems, and impactful user experiences through every project I build.
             </p>
 
             {/* Info Box */}
-            <div className="space-y-6 bg-[#151515] p-6 rounded-2xl w-full">
-              <div className="flex flex-col items-center md:flex-row gap-4 justify-center">
-                <span className="text-sm font-medium text-purple-300">Location:</span>
-                <span className="text-gray-300">Dindigul, Tamil Nadu, India</span>
-              </div>
-              <div className="flex flex-col items-center md:flex-row gap-4 justify-center">
-                <span className="text-sm font-medium text-purple-300">Email:</span>
-                <span className="text-gray-300">pirammasakthi42@gmail.com</span>
+            <div className="bg-[#151515]/60 border border-white/5 p-6 rounded-2xl w-full backdrop-blur-md">
+              <div className="flex flex-col md:flex-row gap-6 md:gap-2 text-center justify-around items-center w-full">
+                <div className="px-4 py-2 flex flex-col items-center">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-purple-400 mb-1">Location</span>
+                  <span className="text-gray-200 text-sm">Dindigul, Tamil Nadu, India</span>
+                </div>
+                <div className="px-6 py-2 border-y md:border-y-0 md:border-x border-white/10 flex flex-col items-center w-full md:w-auto">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-purple-400 mb-1">Email</span>
+                  <span className="text-gray-200 text-sm">pirammasakthi42@gmail.com</span>
+                </div>
+                <div className="px-4 py-2 flex flex-col items-center">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-purple-400 mb-1">Education</span>
+                  <span className="text-gray-200 text-sm font-medium">B.Tech - AI &amp; Data Science</span>
+                  <span className="text-gray-400 text-[11px] mt-0.5">PSNA College of Engineering &amp; Technology</span>
+                </div>
               </div>
             </div>
           </motion.div>

@@ -4,6 +4,13 @@ import { ChevronDown, ChevronUp } from 'lucide-react';
 const certificates = [
 
   {
+    title: 'Research Paper Presentation - ICSIE 2026',
+    issuer: '17th International Conference on Science & Innovative Engineering',
+    date: 'April 2026',
+    description: 'Presented a research paper titled "SIPTRACK: SIPCOT Industrial Performance Tracking System" held at Prince Dr. K. Vasudevan College of Engineering & Technology, Chennai.',
+    image: 'icsie_2026_presentation.jpg', // Local path
+  },
+  {
     title: 'Internship',
     issuer: 'Eagle-HiTech Softclou Pvt Ltd',
     date: 'June 2025',
@@ -18,19 +25,25 @@ const certificates = [
     image: 'Accenture.jpg', // Local path
   },
   {
+    title: 'NPTEL Online Certification - Programming in Java',
+    issuer: 'IIT Kharagpur (Funded by MoE, Govt. of India)',
+    date: 'October 2024',
+    description: 'Successfully completed the 12-week course "Programming in Java" with a consolidated score of 56% (proctored exam and online assignments).',
+    image: 'nptel_java_cert.jpg', // Local path
+  },
+  {
     title: 'Generative AI',
     issuer: 'GUVI',
     date: 'September 2024',
     description: 'The SAWIT.AI Learnathon Program on Generative AI Fundamentals, gaining valuable skills for future projects!',
     image: 'GenAI.jpg', // Local path
   },
-  
   {
-    title: 'Sixth Sense Robotics',
-    issuer: 'Genesis EduTech',
-    date: 'November 2023',
-    description: 'Participated in a two-day hands-on training on Sixth Sense Robotics, securing 2nd place in the competition!',
-    image: 'Workshop.jpg', // Local path
+    title: 'Java Fundamentals Certificate of Excellence',
+    issuer: 'Scaler Topics',
+    date: 'March 2024',
+    description: 'Successfully completed the comprehensive "Java Course - Mastering the Fundamentals" covering 86 video tutorials, 12 modules, and 9 coding challenges.',
+    image: 'java_scaler_cert.jpg', // Local path
   }
 ];
 
@@ -72,7 +85,7 @@ const CertificateItem = ({ certificate }: { certificate: typeof certificates[0] 
 
 const Certificates = () => {
   return (
-    <section id="certificates" className="py-1 bg-transparent relative overflow-hidden">
+    <section id="certificates" className="py-24 bg-transparent relative overflow-hidden">
       <div className="absolute top-40 left-20 w-72 h-72 circle-decoration rounded-full"></div>
       <div className="absolute bottom-800 right-20 w-96 h-96 circle-decoration rounded-full"></div>
       <div className="container mx-auto px-4 relative z-10">

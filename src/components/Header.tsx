@@ -38,14 +38,18 @@ const Header = () => {
           </button>
 
           <nav className="hidden md:flex items-center gap-8">
-            {["about", "projects", "skills", "certificates", "resume", "contact"].map(
+            {["about", "skills", "experience", "projects", "workshops", "certificates", "leadership", "resume", "contact"].map(
               (section) => (
                 <button
                   key={section}
                   onClick={() => scrollToSection(section)}
                   className="text-gray-300 hover:text-white transition-colors"
                 >
-                  {section.charAt(0).toUpperCase() + section.slice(1)}
+                  {section === "workshops"
+                    ? "Workshops"
+                    : section === "leadership"
+                    ? "Leadership"
+                    : section.charAt(0).toUpperCase() + section.slice(1)}
                 </button>
               )
             )}
@@ -54,14 +58,18 @@ const Header = () => {
 
         {isMenuOpen && (
           <nav className="md:hidden mt-4 flex flex-col gap-4">
-            {["about", "projects", "skills", "certificates", "resume", "contact"].map(
+            {["about", "skills", "experience", "projects", "workshops", "certificates", "leadership", "resume", "contact"].map(
               (section) => (
                 <button
                   key={section}
                   onClick={() => scrollToSection(section)}
                   className="text-gray-300 hover:text-white transition-colors"
                 >
-                  {section.charAt(0).toUpperCase() + section.slice(1)}
+                  {section === "workshops"
+                    ? "Workshops"
+                    : section === "leadership"
+                    ? "Leadership"
+                    : section.charAt(0).toUpperCase() + section.slice(1)}
                 </button>
               )
             )}
