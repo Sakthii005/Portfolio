@@ -236,11 +236,6 @@ const Skills = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: false, amount: 0.1 });
 
-  // Left column: Frontend, Databases, ML & AI
-  const leftCats = [techCategories[0], techCategories[2], techCategories[4]];
-  // Right column: Backend, Programming Languages, Tools & Platforms
-  const rightCats = [techCategories[1], techCategories[3], techCategories[5]];
-
   return (
     <section
       id="skills"
@@ -270,29 +265,14 @@ const Skills = () => {
 
           {/* Two-column split */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-12 gap-y-2">
-            {/* LEFT COLUMN */}
-            <div className="flex flex-col gap-2">
-              {leftCats.map((cat, idx) => (
-                <CategoryBlock
-                  key={cat.label}
-                  cat={cat}
-                  isInView={isInView}
-                  baseDelay={idx * 0.05}
-                />
-              ))}
-            </div>
-
-            {/* RIGHT COLUMN */}
-            <div className="flex flex-col gap-2">
-              {rightCats.map((cat, idx) => (
-                <CategoryBlock
-                  key={cat.label}
-                  cat={cat}
-                  isInView={isInView}
-                  baseDelay={idx * 0.05 + 0.1}
-                />
-              ))}
-            </div>
+            {techCategories.map((cat, idx) => (
+              <CategoryBlock
+                key={cat.label}
+                cat={cat}
+                isInView={isInView}
+                baseDelay={idx * 0.05}
+              />
+            ))}
           </div>
         </div>
 
