@@ -119,7 +119,7 @@ const Leadership = () => {
   return (
     <section
       id="leadership"
-      className="relative py-24 bg-transparent overflow-hidden flex flex-col items-center justify-center"
+      className="relative pt-8 pb-24 bg-transparent overflow-hidden flex flex-col items-center justify-center"
     >
       {/* Decorative background blobs */}
       <div className="absolute top-20 right-10 w-72 h-72 circle-decoration rounded-full opacity-20" />

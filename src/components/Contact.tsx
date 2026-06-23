@@ -76,7 +76,7 @@ const Contact: React.FC = () => {
     <section
       id="contact"
       ref={sectionRef}
-      className="py-20 bg-transparent relative overflow-hidden flex flex-col items-center justify-center"
+      className="pt-8 pb-20 bg-transparent relative overflow-hidden flex flex-col items-center justify-center"
     >
       {/* Decorative background blobs */}
       <div className="absolute top-40 left-20 w-72 h-72 circle-decoration rounded-full opacity-20" />
