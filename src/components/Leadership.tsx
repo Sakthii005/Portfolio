@@ -68,7 +68,7 @@ const LeadershipCard = ({
         <h4 className="text-xs font-bold tracking-wider text-purple-400 uppercase mb-4">
           Key Responsibilities
         </h4>
-        <ul className="space-y-3.5 text-gray-300 text-sm leading-relaxed">
+        <ul className="space-y-3.5 text-gray-300 text-base leading-relaxed">
           {item.description.map((desc, dIdx) => (
             <li key={dIdx} className="flex items-start gap-2.5">
               <span className="mt-1 flex-shrink-0">

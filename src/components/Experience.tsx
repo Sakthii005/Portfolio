@@ -98,7 +98,7 @@ const Experience = () => {
               <h4 className="text-xs font-bold tracking-widest text-purple-400 uppercase">
                 Core Work &amp; Learning
               </h4>
-              <ul className="space-y-3 text-gray-300 text-xs sm:text-sm md:text-base">
+              <ul className="space-y-3 text-gray-300 text-base">
                 {exp.description.map((desc, i) => (
                   <li key={i} className="flex items-start gap-2.5 leading-relaxed">
                     <span className="mt-1 text-purple-400 font-bold select-none">•</span>

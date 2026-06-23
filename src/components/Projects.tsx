@@ -136,7 +136,7 @@ const Projects = () => {
                   </h3>
 
                   {/* Description */}
-                  <p className="text-gray-300 text-sm leading-relaxed">
+                  <p className="text-gray-300 text-base leading-relaxed">
                     {project.description}
                   </p>
 
@@ -145,7 +145,7 @@ const Projects = () => {
                     <span className="text-[10px] font-extrabold uppercase tracking-widest text-purple-400">
                       Key Features
                     </span>
-                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-gray-400">
+                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm text-gray-400">
                       {project.features.map((feature, fIdx) => (
                         <li key={fIdx} className="flex items-start gap-1.5">
                           <Zap className="w-3.5 h-3.5 text-purple-400 mt-0.5 flex-shrink-0" />

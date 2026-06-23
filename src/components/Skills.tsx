@@ -184,7 +184,7 @@ const SkillCard = ({
     </div>
 
     {/* Name */}
-    <span className="text-gray-300 group-hover:text-white text-xs font-medium z-10 transition-colors duration-300">
+    <span className="text-gray-300 group-hover:text-white text-base font-medium z-10 transition-colors duration-300">
       {name}
     </span>
   </motion.div>

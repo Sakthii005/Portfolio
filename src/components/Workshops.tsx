@@ -108,7 +108,7 @@ const Workshops = () => {
                 <h4 className="text-xs font-bold tracking-widest text-purple-400 uppercase">
                   Achievements &amp; Activities
                 </h4>
-                <ul className="space-y-3.5 text-gray-300 text-xs sm:text-sm md:text-base list-none pl-0">
+                <ul className="space-y-3.5 text-gray-300 text-base list-none pl-0">
                   {item.description.map((desc, dIdx) => (
                     <li key={dIdx} className="flex items-start gap-2.5 leading-relaxed">
                       <span className="mt-1 flex-shrink-0">

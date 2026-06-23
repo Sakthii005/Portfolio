@@ -105,7 +105,7 @@ const Contact: React.FC = () => {
                   Contact Information
                 </h3>
                 
-                <p className="text-gray-400 text-sm leading-relaxed mb-8">
+                <p className="text-gray-400 text-base leading-relaxed mb-8">
                   Have an exciting project or just want to say hello? Drop me a message and I'll get back to you as soon as possible.
                 </p>
 
@@ -117,7 +117,7 @@ const Contact: React.FC = () => {
                     </div>
                     <div className="flex flex-col">
                       <span className="text-[10px] text-gray-500 font-bold uppercase tracking-wider">Email Me</span>
-                      <span className="text-gray-300 text-sm font-medium">pirammasakthi42@gmail.com</span>
+                      <span className="text-gray-300 text-base font-medium">pirammasakthi42@gmail.com</span>
                     </div>
                   </div>
 
@@ -128,7 +128,7 @@ const Contact: React.FC = () => {
                     </div>
                     <div className="flex flex-col">
                       <span className="text-[10px] text-gray-500 font-bold uppercase tracking-wider">Call Me</span>
-                      <span className="text-gray-300 text-sm font-medium">+91 9566442144</span>
+                      <span className="text-gray-300 text-base font-medium">+91 9566442144</span>
                     </div>
                   </div>
 
@@ -139,7 +139,7 @@ const Contact: React.FC = () => {
                     </div>
                     <div className="flex flex-col">
                       <span className="text-[10px] text-gray-500 font-bold uppercase tracking-wider">Location</span>
-                      <span className="text-gray-300 text-sm font-medium">Dindigul, India</span>
+                      <span className="text-gray-300 text-base font-medium">Dindigul, India</span>
                     </div>
                   </div>
 
@@ -154,7 +154,7 @@ const Contact: React.FC = () => {
                         href="https://www.fiverr.com/s/2K35eRL"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-gray-300 hover:text-[#1dbf73] text-sm font-medium transition-colors"
+                        className="text-gray-300 hover:text-[#1dbf73] text-base font-medium transition-colors"
                       >
                         Fiverr Profile
                       </a>
