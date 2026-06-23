@@ -258,7 +258,7 @@ const Skills = () => {
         </div>
 
         {/* ── TECHNICAL SKILLS ── */}
-        <div className="mb-20">
+        <div className="mb-10">
           <h3 className="text-xl sm:text-2xl font-bold mb-8 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
             Technical Skills
           </h3>
