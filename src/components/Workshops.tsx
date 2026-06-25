@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Award, Calendar, ShieldCheck, MapPin, ZoomIn, X } from "lucide-react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useInView } from "framer-motion";
+import SpotlightCard from "./SpotlightCard";
 
 interface WorkshopImage {
   src: string;
@@ -53,17 +54,25 @@ const workshopData: WorkshopItem[] = [
 
 const Workshops = () => {
   const [lightboxImg, setLightboxImg] = useState<WorkshopImage | null>(null);
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: false, amount: 0.06 });
 
   return (
     <section
       id="workshops"
+      ref={ref}
       className="relative pt-8 pb-24 bg-transparent overflow-hidden flex flex-col items-center justify-center"
     >
       {/* Decorative background blobs */}
       <div className="absolute top-20 left-10 w-72 h-72 circle-decoration rounded-full opacity-20" />
       <div className="absolute bottom-20 right-10 w-80 h-80 circle-decoration rounded-full opacity-20" />
 
-      <div className="relative z-10 w-full max-w-5xl px-4 sm:px-6">
+      <motion.div
+        className="relative z-10 w-full max-w-5xl px-4 sm:px-6"
+        initial={{ opacity: 0, y: 50 }}
+        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
         {/* Section header */}
         <h2 className="text-3xl sm:text-4xl font-bold text-center mb-5 gradient-text">
           Workshops &amp; Training
@@ -77,9 +86,9 @@ const Workshops = () => {
         {/* Workshops List */}
         <div className="max-w-4xl mx-auto space-y-16">
           {workshopData.map((item, idx) => (
-            <div
+            <SpotlightCard
               key={idx}
-              className="bg-[#121212]/75 border border-white/5 backdrop-blur-md rounded-3xl p-6 md:p-8 hover:border-purple-500/20 transition-all duration-300 shadow-xl space-y-8"
+              className="group bg-[#121212]/75 border border-white/5 backdrop-blur-md rounded-3xl p-6 md:p-8 hover:border-purple-500/20 transition-all duration-300 shadow-xl space-y-8"
             >
               {/* Header details */}
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-white/5">
@@ -159,10 +168,10 @@ const Workshops = () => {
                   ))}
                 </div>
               </div>
-            </div>
+            </SpotlightCard>
           ))}
         </div>
-      </div>
+      </motion.div>
 
       {/* Lightbox / Fullscreen Image Viewer Modal */}
       <AnimatePresence>

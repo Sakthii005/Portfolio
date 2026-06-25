@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { ExternalLink, Github, Zap, ZoomIn, X } from "lucide-react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useInView } from "framer-motion";
+import SpotlightCard from "./SpotlightCard";
 
 /* ─────────────────────────── DATA ─────────────────────────── */
 const projects = [
@@ -76,17 +77,25 @@ const projects = [
 
 const Projects = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: false, amount: 0.06 });
 
   return (
     <section
       id="projects"
+      ref={ref}
       className="relative pt-8 pb-24 bg-transparent overflow-hidden flex flex-col items-center justify-center"
     >
       {/* Background decoration */}
       <div className="absolute top-20 right-10 w-72 h-72 circle-decoration rounded-full opacity-10 blur-[80px]" />
       <div className="absolute bottom-20 left-10 w-80 h-80 circle-decoration rounded-full opacity-10 blur-[80px]" />
 
-      <div className="relative z-10 w-full max-w-6xl px-4 sm:px-6">
+      <motion.div
+        className="relative z-10 w-full max-w-6xl px-4 sm:px-6"
+        initial={{ opacity: 0, y: 50 }}
+        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
         {/* Section Header */}
         <h2 className="text-3xl sm:text-4xl font-bold text-center mb-5 gradient-text">
           Featured Projects
@@ -97,13 +106,32 @@ const Projects = () => {
           <span className="w-12 sm:w-16 h-[1px] bg-gradient-to-l from-purple-500 to-transparent" />
         </div>
 
-        {/* Unique Projects Layout: Fully Visible Image Grid Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
+        {/* Staggered Cards Grid */}
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10"
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          variants={{
+            hidden: {},
+            visible: {
+              transition: { staggerChildren: 0.08, delayChildren: 0.15 },
+            },
+          }}
+        >
           {projects.map((project, idx) => (
-            <div
+            <motion.div
               key={idx}
-              className="bg-[#121212]/75 border border-white/5 backdrop-blur-md rounded-3xl overflow-hidden hover:border-purple-500/25 transition-all duration-300 shadow-2xl flex flex-col h-full"
+              className="flex flex-col h-full"
+              variants={{
+                hidden: { opacity: 0, y: 36 },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: { duration: 0.55, ease: "easeOut" },
+                },
+              }}
             >
+              <SpotlightCard className="group bg-[#121212]/75 border border-white/5 backdrop-blur-md rounded-3xl overflow-hidden hover:border-purple-500/25 transition-all duration-300 shadow-2xl flex flex-col h-full">
               {/* Image Container: Full aspect ratio, covering the card fully */}
               <div className="relative aspect-[16/10] overflow-hidden border-b border-white/5 group">
                 <img
@@ -206,10 +234,11 @@ const Projects = () => {
                   </div>
                 </div>
               </div>
-            </div>
+              </SpotlightCard>
+            </motion.div>
           ))}
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
       {/* Fullscreen Image Lightbox Modal */}
       <AnimatePresence>

@@ -33,3 +33,21 @@ html {
   scroll-behavior: smooth;
 }
 
+/* ── Custom Scrollbar ── */
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #9d8ec7, #a855f7);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #a78bfa, #ec4899);
+}
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #9d8ec7 #0a0a0a;
+}

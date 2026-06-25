@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
+import { motion, useInView, AnimatePresence } from 'framer-motion';
 
 const certificates = [
 
@@ -67,28 +68,46 @@ const CertificateItem = ({ certificate }: { certificate: typeof certificates[0] 
         )}
       </button>
 
-      {isExpanded && (
-        <div className="p-6 pt-0">
-          <p className="text-gray-400 mb-4">{certificate.description}</p>
-          <div className="rounded-xl overflow-hidden mb-4">
-            <img
-              src={certificate.image}
-              alt={certificate.title}
-              className="w-full h-auto object-cover hover:scale-105 transition-transform duration-300"
-            />
-          </div>
-        </div>
-      )}
+      <AnimatePresence initial={false}>
+        {isExpanded && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="overflow-hidden"
+          >
+            <div className="p-6 pt-0">
+              <p className="text-gray-400 mb-4">{certificate.description}</p>
+              <div className="rounded-xl overflow-hidden mb-4">
+                <img
+                  src={certificate.image}
+                  alt={certificate.title}
+                  className="w-full h-auto object-cover hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
 
 const Certificates = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: false, amount: 0.06 });
+
   return (
-    <section id="certificates" className="pt-8 pb-24 bg-transparent relative overflow-hidden">
+    <section id="certificates" ref={ref} className="pt-8 pb-24 bg-transparent relative overflow-hidden">
       <div className="absolute top-40 left-20 w-72 h-72 circle-decoration rounded-full"></div>
       <div className="absolute bottom-800 right-20 w-96 h-96 circle-decoration rounded-full"></div>
-      <div className="container mx-auto px-4 relative z-10">
+      <motion.div
+        className="container mx-auto px-4 relative z-10"
+        initial={{ opacity: 0, y: 50 }}
+        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
         <h2 className="text-4xl font-bold text-center mb-5 gradient-text">Certificates</h2>
         <h3 className="text-1xl font-semibold mb-10 text-purple-300 flex items-center justify-center">
           <span className="w-16 h-[1px] bg-gradient-to-r from-purple-500 to-transparent" />
@@ -100,7 +119,7 @@ const Certificates = () => {
             <CertificateItem key={index} certificate={cert} />
           ))}
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };

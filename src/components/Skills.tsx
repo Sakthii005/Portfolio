@@ -234,7 +234,7 @@ const CategoryBlock = ({
 /* ===================== MAIN ===================== */
 const Skills = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: false, amount: 0.1 });
+  const isInView = useInView(ref, { once: false, amount: 0.06 });
 
   return (
     <section

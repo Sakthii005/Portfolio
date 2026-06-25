@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { Users, Calendar, Award, ZoomIn, X } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useInView } from "framer-motion";
 
 interface LeadershipItem {
   role: string;
@@ -115,17 +115,25 @@ const LeadershipCard = ({
 
 const Leadership = () => {
   const [activeImage, setActiveImage] = useState<{ src: string; caption: string } | null>(null);
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: false, amount: 0.06 });
 
   return (
     <section
       id="leadership"
+      ref={ref}
       className="relative pt-8 pb-24 bg-transparent overflow-hidden flex flex-col items-center justify-center"
     >
       {/* Decorative background blobs */}
       <div className="absolute top-20 right-10 w-72 h-72 circle-decoration rounded-full opacity-20" />
       <div className="absolute bottom-20 left-10 w-80 h-80 circle-decoration rounded-full opacity-20" />
 
-      <div className="relative z-10 w-full max-w-5xl px-4 sm:px-6">
+      <motion.div
+        className="relative z-10 w-full max-w-5xl px-4 sm:px-6"
+        initial={{ opacity: 0, y: 50 }}
+        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
         {/* Section header */}
         <h2 className="text-3xl sm:text-4xl font-bold text-center mb-5 gradient-text">
           Leadership &amp; Activities
@@ -145,7 +153,7 @@ const Leadership = () => {
             />
           ))}
         </div>
-      </div>
+      </motion.div>
 
       {/* Lightbox / Fullscreen Image Viewer Modal */}
       <AnimatePresence>

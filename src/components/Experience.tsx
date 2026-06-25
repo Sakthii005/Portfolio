@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Briefcase, Calendar, MapPin, ZoomIn, X } from "lucide-react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useInView } from "framer-motion";
+import SpotlightCard from "./SpotlightCard";
 
 interface ExperienceImage {
   src: string;
@@ -41,17 +42,25 @@ const experiences: ExperienceItem[] = [
 const Experience = () => {
   const [lightboxImg, setLightboxImg] = useState<ExperienceImage | null>(null);
   const exp = experiences[0];
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: false, amount: 0.06 });
 
   return (
     <section
       id="experience"
+      ref={ref}
       className="relative pt-8 pb-24 bg-transparent overflow-hidden flex flex-col items-center justify-center"
     >
       {/* Decorative background blobs */}
       <div className="absolute top-20 right-10 w-80 h-80 circle-decoration rounded-full opacity-20" />
       <div className="absolute bottom-10 left-10 w-96 h-96 circle-decoration rounded-full opacity-20" />
 
-      <div className="relative z-10 w-full max-w-4xl px-4 sm:px-6">
+      <motion.div
+        className="relative z-10 w-full max-w-4xl px-4 sm:px-6"
+        initial={{ opacity: 0, y: 50 }}
+        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
         {/* Section header */}
         <h2 className="text-3xl sm:text-4xl font-bold text-center mb-5 gradient-text">
           Featured Experience
@@ -63,7 +72,7 @@ const Experience = () => {
         </div>
 
         {/* Unique Card Dashboard Layout - Stacked Form */}
-        <div className="bg-[#121212]/75 border border-white/5 backdrop-blur-md rounded-3xl overflow-hidden shadow-2xl hover:border-purple-500/20 transition-colors duration-500 p-6 md:p-8 space-y-8">
+        <SpotlightCard className="group bg-[#121212]/75 border border-white/5 backdrop-blur-md rounded-3xl overflow-hidden shadow-2xl hover:border-purple-500/20 transition-colors duration-500 p-6 md:p-8 space-y-8">
           
           {/* TOP SECTION: Details & Responsibilities */}
           <div className="flex flex-col justify-between">
@@ -154,8 +163,8 @@ const Experience = () => {
             </div>
           </div>
 
-        </div>
-      </div>
+        </SpotlightCard>
+      </motion.div>
 
       {/* Lightbox / Fullscreen Image Viewer Modal */}
       <AnimatePresence>

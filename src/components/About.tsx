@@ -3,7 +3,7 @@ import { motion, useInView } from "framer-motion";
 
 const About = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: false, amount: 0.3 });
+  const isInView = useInView(ref, { once: false, amount: 0.06 });
 
   return (
     <section

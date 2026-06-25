@@ -35,7 +35,7 @@ const highlights = [
 
 const Resume = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: false, amount: 0.2 });
+  const isInView = useInView(ref, { once: false, amount: 0.06 });
   const resumeUrl = "PIRAMMA SAKTHI.pdf";
 
   return (

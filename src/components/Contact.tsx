@@ -16,7 +16,7 @@ const Contact: React.FC = () => {
   const [loading, setLoading] = React.useState<boolean>(false);
 
   const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, { once: false, amount: 0.3 });
+  const isInView = useInView(sectionRef, { once: false, amount: 0.06 });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -82,7 +82,12 @@ const Contact: React.FC = () => {
       <div className="absolute top-40 left-20 w-72 h-72 circle-decoration rounded-full opacity-20" />
       <div className="absolute bottom-40 right-20 w-96 h-96 circle-decoration rounded-full opacity-20" />
 
-      <div className="relative z-10 w-full max-w-5xl px-4 sm:px-6">
+      <motion.div
+        className="relative z-10 w-full max-w-5xl px-4 sm:px-6"
+        initial={{ opacity: 0, y: 50 }}
+        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
         {/* Section title */}
         <h2 className="text-3xl sm:text-4xl font-bold text-center mb-5 gradient-text">
           Get In Touch
@@ -234,7 +239,7 @@ const Contact: React.FC = () => {
 
           </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };
