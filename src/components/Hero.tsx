@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Github, Linkedin, Mail, Download, ChevronDown } from 'lucide-react';
-import { SiFiverr } from 'react-icons/si';
+
+// Role rotating text
+const roles = ["Full Stack Web Developer", "Building Scalable Web Applications"];
 
 const Hero = () => {
-  // Role rotating text
-  const roles = ["Full Stack Web Developer", "Building Scalable Web Applications"];
   const [roleIndex, setRoleIndex] = useState(0);
 
 
@@ -136,14 +136,6 @@ const Hero = () => {
               whileHover={{ scale: 1.3, rotate: 10 }}
             >
               <Linkedin className="w-7 h-7 text-gray-300 hover:text-[#0077B5]" />
-            </motion.a>
-
-            <motion.a
-              href="https://www.fiverr.com/s/2K35eRL"
-              target="_blank"
-              whileHover={{ scale: 1.3, y: -5 }}
-            >
-              <SiFiverr className="w-7 h-7 text-gray-300 hover:text-[#1dbf73]" />
             </motion.a>
 
             <motion.a

@@ -2,7 +2,6 @@ import React, { useRef } from "react";
 import { Mail, Phone, MapPin } from "lucide-react";
 import emailjs from "emailjs-com";
 import { motion, useInView } from "framer-motion";
-import { SiFiverr } from "react-icons/si";
 
 declare global {
   interface Window {
@@ -145,24 +144,6 @@ const Contact: React.FC = () => {
                     <div className="flex flex-col">
                       <span className="text-[10px] text-gray-500 font-bold uppercase tracking-wider">Location</span>
                       <span className="text-gray-300 text-base font-medium">Dindigul, India</span>
-                    </div>
-                  </div>
-
-                  {/* Fiverr */}
-                  <div className="flex items-center gap-4 group">
-                    <div className="p-2.5 bg-purple-500/10 border border-purple-500/20 rounded-xl text-purple-400 group-hover:scale-110 transition-transform duration-300">
-                      <SiFiverr className="w-4 h-4" />
-                    </div>
-                    <div className="flex flex-col">
-                      <span className="text-[10px] text-gray-500 font-bold uppercase tracking-wider">Freelance</span>
-                      <a
-                        href="https://www.fiverr.com/s/2K35eRL"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-gray-300 hover:text-[#1dbf73] text-base font-medium transition-colors"
-                      >
-                        Fiverr Profile
-                      </a>
                     </div>
                   </div>
                 </div>

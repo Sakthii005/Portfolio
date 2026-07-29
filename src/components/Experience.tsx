@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { Briefcase, Calendar, MapPin, ZoomIn, X } from "lucide-react";
+import { Calendar, MapPin, ZoomIn, X } from "lucide-react";
 import { AnimatePresence, motion, useInView } from "framer-motion";
 import SpotlightCard from "./SpotlightCard";
 
